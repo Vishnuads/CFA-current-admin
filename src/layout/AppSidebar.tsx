@@ -8,7 +8,14 @@ import {
   ListIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
-import { ClipboardPenLine, GraduationCap, Headset, NotebookText, PartyPopper } from "lucide-react";
+import {
+  ClipboardPenLine,
+  GraduationCap,
+  Headset,
+  NotebookText,
+  PartyPopper,
+  Users,
+} from "lucide-react";
 
 type NavItem = {
   name: string;
@@ -24,12 +31,17 @@ const navItems: NavItem[] = [
     path: "/",
   },
   {
-    icon: <NotebookText strokeWidth={1.7}/>,
+    icon: <NotebookText strokeWidth={1.7} />,
     name: "Courses",
     path: "/courses",
   },
-   {
-    icon: <ClipboardPenLine strokeWidth={1.7}/>,
+  {
+    icon: <Users strokeWidth={1.7} />,
+    name: "Mentors",
+    path: "/mentors",
+  },
+  {
+    icon: <ClipboardPenLine strokeWidth={1.7} />,
     name: "Admissions",
     path: "/admissions",
   },
@@ -39,18 +51,18 @@ const navItems: NavItem[] = [
     path: "/workshops",
   },
   {
-    icon: <PartyPopper/>,
+    icon: <PartyPopper />,
     name: "Events",
     path: "/events",
   },
   {
-    icon: <GraduationCap strokeWidth={1.7}/>,
+    icon: <GraduationCap strokeWidth={1.7} />,
     name: "Placements",
     path: "/placements",
   },
 
   {
-    icon: <Headset strokeWidth={1.7}/>,
+    icon: <Headset strokeWidth={1.7} />,
     name: "Contact Form",
     path: "/contact",
   },
@@ -59,11 +71,7 @@ const navItems: NavItem[] = [
     name: "Book Orders",
     path: "/books",
   },
-  
-
 ];
-
-
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
@@ -87,7 +95,7 @@ const AppSidebar: React.FC = () => {
   useEffect(() => {
     let submenuMatched = false;
     ["main"].forEach((menuType) => {
-      const items = navItems ;
+      const items = navItems;
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
@@ -133,7 +141,7 @@ const AppSidebar: React.FC = () => {
   //   });
   // };
 
-  const renderMenuItems = (items: NavItem[], menuType: "main" ) => (
+  const renderMenuItems = (items: NavItem[], menuType: "main") => (
     <ul className="flex flex-col gap-2">
       {items.map((nav, index) => (
         <li key={nav.name}>
@@ -296,20 +304,20 @@ const AppSidebar: React.FC = () => {
             </>
           ) : (
             <>
-            <img
-              src="/images/logo/cf-icon.svg"
-              alt="Logo"
-              className="hidden dark:block"
-              width={32}
-              height={32}
-            />
-             <img
-              src="/images/logo/cf-icon-dark.svg"
-              alt="Logo"
-              className="dark:hidden"
-              width={32}
-              height={32}
-            />
+              <img
+                src="/images/logo/cf-icon.svg"
+                alt="Logo"
+                className="hidden dark:block"
+                width={32}
+                height={32}
+              />
+              <img
+                src="/images/logo/cf-icon-dark.svg"
+                alt="Logo"
+                className="dark:hidden"
+                width={32}
+                height={32}
+              />
             </>
           )}
         </Link>
@@ -349,7 +357,7 @@ const AppSidebar: React.FC = () => {
             </div>
           </div>
         </nav>
-        {isExpanded || isHovered || isMobileOpen }
+        {isExpanded || isHovered || isMobileOpen}
       </div>
     </aside>
   );

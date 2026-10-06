@@ -9,7 +9,6 @@ interface Department {
   name: string;
   slug: string;
 }
-
 export interface PlacementRecord {
   _id: string;
   name: string;

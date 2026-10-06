@@ -19,6 +19,7 @@ import AdmissionRegistration from "./pages/AdmissionRegistration";
 import Enquiry from "./pages/Enquiry";
 import ProtectRoute from "./components/auth/ProtectRoute";
 import "react-toastify/dist/ReactToastify.css";
+import Mentors from "./pages/Mentors/Mentors";
 
 export default function App() {
   return (
@@ -52,6 +53,7 @@ export default function App() {
             <Route path="/placements" element={<Placements />} />
             <Route path="/admissions" element={<AdmissionRegistration />} />
             <Route path="/contact" element={<Enquiry />} />
+            <Route path="/mentors" element={<Mentors/>} />
           </Route>
 
           {/* Auth Layout */}
