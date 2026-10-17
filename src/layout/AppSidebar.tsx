@@ -9,6 +9,7 @@ import {
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import {
+  Briefcase,
   ClipboardPenLine,
   GraduationCap,
   Headset,
@@ -67,9 +68,14 @@ const navItems: NavItem[] = [
     path: "/contact",
   },
   {
-    icon: <ListIcon />,
+    icon: <ListIcon strokeWidth={1.7}/>,
     name: "Book Orders",
     path: "/books",
+  },
+  {
+    icon: <Briefcase strokeWidth={1.7} />,
+    name: "Jobs",
+    path: "/careers",
   },
 ];
 

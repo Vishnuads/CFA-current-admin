@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Plus, Pencil, Trash2, Eye } from "lucide-react";
-
+import BASE_URL from "../../api";
 interface Mentor {
   _id: string;
   name: string;
@@ -17,8 +17,6 @@ interface Department {
   name: string;
   slug: string;
 }
-
-const BASE_URL = "http://localhost:3000";
 
 export default function Mentors() {
   const [mentors, setMentors] = useState<Mentor[]>([]);
