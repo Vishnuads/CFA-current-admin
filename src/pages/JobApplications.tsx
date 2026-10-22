@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../api";
-import { Eye, Trash2, X, Download, ExternalLink, ArrowLeft } from "lucide-react";
+import {
+  Eye,
+  Trash2,
+  X,
+  Download,
+  ExternalLink,
+  ArrowLeft,
+} from "lucide-react";
 import { useNavigate } from "react-router";
 
 // ---- Change these if your backend routes are named differently ----
@@ -12,12 +19,7 @@ const API = {
 };
 // -------------------------------------------------------------------
 
-const STATUS_OPTIONS = [
-  "Pending",
-  "Reviewed",
-  "Shortlisted",
-  "Rejected",
-] as const;
+const STATUS_OPTIONS = ["Pending", "Shortlisted", "Rejected"] as const;
 type Status = (typeof STATUS_OPTIONS)[number];
 
 interface Application {
@@ -52,8 +54,14 @@ const formatDateTime = (iso: string) =>
 // DB stores "uploads/resumes/x.pdf" (no leading slash) — normalise it.
 const resumeUrl = (path: string) => `${BASE_URL}/${path.replace(/^\/+/, "")}`;
 
-const selectClasses =
-  "rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-900 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-900/10 disabled:cursor-not-allowed disabled:opacity-50";
+const selectClasses: Record<Status, string> = {
+  Pending: "bg-yellow-100 text-yellow-800 border-yellow-300",
+  Shortlisted: "bg-green-100 text-green-800 border-green-300",
+  Rejected: "bg-red-100 text-red-800 border-red-300",
+};
+
+const baseSelectClasses =
+  "rounded-lg border px-3 py-1.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-300 disabled:cursor-not-allowed disabled:opacity-50";
 
 export default function Applications() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -154,19 +162,19 @@ export default function Applications() {
     <section className="mx-auto w-full max-w-5xl p-4 sm:p-8">
       <div className="mb-6 flex items-center justify-between">
         <div>
-        <h1 className="text-lg font-semibold text-gray-900">Applications</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Candidates who applied through the careers form.
-        </p>
+          <h1 className="text-lg font-semibold text-gray-900">Applications</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            Candidates who applied through the careers form.
+          </p>
         </div>
 
         <button
-            onClick={() => navigate("/careers")}
-            className="flex items-center gap-1.5 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-          >
-            <ArrowLeft size={16} />
-            Back to Jobs
-          </button>
+          onClick={() => navigate("/careers")}
+          className="flex items-center gap-1.5 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+        >
+          <ArrowLeft size={16} />
+          Back to Jobs
+        </button>
       </div>
 
       {error && (
@@ -189,13 +197,16 @@ export default function Applications() {
             <table className="w-full min-w-[720px] text-center">
               <thead className="border-b border-gray-200 bg-gray-50">
                 <tr>
-                  {["Name", "Role", "Submitted", "Status", "Action"].map((h, i) => (
-                    <th key={i}
-                      className="px-6 py-3 text-xs font-medium uppercase tracking-wide text-gray-500"
-                    >
-                      {h}
-                    </th>
-                  ))}
+                  {["Name", "Role", "Submitted", "Status", "Action"].map(
+                    (h, i) => (
+                      <th
+                        key={i}
+                        className="px-6 py-3 text-xs font-medium uppercase tracking-wide text-gray-500"
+                      >
+                        {h}
+                      </th>
+                    ),
+                  )}
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -219,7 +230,7 @@ export default function Applications() {
                         onChange={(e) =>
                           updateStatus(a._id, e.target.value as Status)
                         }
-                        className={selectClasses}
+                        className={`${baseSelectClasses} ${selectClasses[a.status]}`}
                       >
                         {STATUS_OPTIONS.map((s) => (
                           <option key={s} value={s}>
@@ -306,7 +317,7 @@ export default function Applications() {
                     onChange={(e) =>
                       updateStatus(viewing._id, e.target.value as Status)
                     }
-                    className={selectClasses}
+                      className={`${baseSelectClasses} ${selectClasses[viewing.status]}`}
                   >
                     {STATUS_OPTIONS.map((s) => (
                       <option key={s} value={s}>

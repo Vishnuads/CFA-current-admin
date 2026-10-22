@@ -127,11 +127,11 @@ export default function Jobs() {
             <table className="w-full min-w-[720px] text-left">
               <thead className="border-b border-gray-200 bg-gray-50">
                 <tr>
-                  {["Title", "Location", "Experience", "Status", ""].map(
+                  {["Title", "Location", "Experience", "Status", "Actions"].map(
                     (h, i) => (
                       <th
                         key={i}
-                        className="px-6 py-3 text-xs font-medium uppercase tracking-wide text-gray-500"
+                        className="px-6 py-3 text-xs text-cente font-medium uppercase tracking-wide text-gray-500"
                       >
                         {h}
                       </th>
@@ -164,7 +164,7 @@ export default function Jobs() {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-center justify-end gap-1">
+                      <div className="flex items-center justify-start gap-1">
                          <button
                           onClick={() => navigate(`/edit-jobs/${j._id}`)}
                           aria-label={`View ${j.title}`}

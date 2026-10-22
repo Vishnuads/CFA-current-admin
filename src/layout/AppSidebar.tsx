@@ -77,6 +77,11 @@ const navItems: NavItem[] = [
     name: "Jobs",
     path: "/careers",
   },
+  {
+    icon: <Briefcase strokeWidth={1.7} />,
+    name: "Vishnuads Jobs",
+    path: "/va-careers",
+  },
 ];
 
 const AppSidebar: React.FC = () => {

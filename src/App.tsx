@@ -24,6 +24,10 @@ import JobApplications from "./pages/JobApplications"
 import Jobs from "./pages/Jobs/Jobs";
 import JobForm from "./pages/Jobs/JobForm";
 
+import VaJobs from "./pages/Va-Jobs/Jobs";
+import VaApplications from "./pages/Va-Jobs/JobApplications"
+import VaForm from "./pages/Va-Jobs/JobForm"
+
 export default function App() {
   return (
     <>
@@ -43,10 +47,7 @@ export default function App() {
             <Route path="/workshops" element={<Workshops />} />
             <Route path="/create-workshop" element={<Createform />} />
             <Route path="/edit-workshop/:id" element={<Createform />} />
-            <Route
-              path="/workshop-registrations"
-              element={<WorkshopRegistration />}
-            />
+            <Route path="/workshop-registrations" element={<WorkshopRegistration />} />
             <Route path="/events" element={<Events />} />
             <Route path="/create-event" element={<FormPage />} />
             <Route path="/edit-event/:id" element={<FormPage />} />
@@ -57,10 +58,16 @@ export default function App() {
             <Route path="/admissions" element={<AdmissionRegistration />} />
             <Route path="/contact" element={<Enquiry />} />
             <Route path="/mentors" element={<Mentors/>} />
+
             <Route path="/applications" element={<JobApplications/>} />
             <Route path="/careers" element={<Jobs/>} />
             <Route path="/add-jobs" element={<JobForm/>} />
             <Route path="/edit-jobs/:id" element={<JobForm/>} />
+            {/* Vishnuads Jobs */}
+            <Route path="/va-careers" element={<VaJobs/>} />
+            <Route path="/va-careers/add-jobs" element={<VaForm/>} />
+            <Route path="/va-careers/edit-jobs/:id" element={<VaForm/>} />
+             <Route path="/va-careers/applications" element={<VaApplications/>} />
           </Route>
 
           {/* Auth Layout */}
